@@ -825,10 +825,6 @@ textarea.form-input {
   .sidebar-overlay {
     display: block;
   }
-
-  .header-menu-btn {
-    display: flex;
-  }
 }
 
 /* Tablet (2 columns) */
