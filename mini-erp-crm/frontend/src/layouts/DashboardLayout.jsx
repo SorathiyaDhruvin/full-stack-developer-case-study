@@ -21,7 +21,7 @@ const DashboardLayout = () => {
     <div className="dashboard-layout">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
       <div className="dashboard-main">
-        <Header title={title} onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
+        <Header title={title} onMenuToggle={() => setSidebarOpen(!sidebarOpen)} isSidebarOpen={sidebarOpen} />
         <main className="dashboard-content">
           <Outlet />
         </main>

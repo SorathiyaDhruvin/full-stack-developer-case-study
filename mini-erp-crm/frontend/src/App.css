@@ -759,9 +759,14 @@ textarea.form-input {
     padding: 0 16px;
   }
 
-  .header-user,
-  .header-logout-btn {
-    display: none;
+  .header-user-role {
+    display: none; /* Hide role on mobile to save space */
+  }
+
+  .header-user-name {
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .page-toolbar,
@@ -790,5 +795,96 @@ textarea.form-input {
 
   .row-actions {
     flex-wrap: wrap;
+  }
+}
+
+/* --- NEW RESPONSIVE UI/UX IMPROVEMENTS --- */
+
+/* Sidebar Overlay for Mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 40;
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 1023px) {
+  .sidebar {
+    position: fixed;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+}
+
+/* Tablet (2 columns) */
+@media (min-width: 568px) and (max-width: 1199px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Portrait - Responsive Cards for Tables */
+@media (max-width: 567px) {
+  .table, .table tbody, .table tr, .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    background: var(--surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  .table td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .table td:first-child {
+    padding-top: 0;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: left;
+    margin-right: 16px;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .two-column {
+    grid-template-columns: 1fr;
   }
 }

@@ -11,6 +11,7 @@ import CustomersPage from "./pages/CustomersPage";
 import ProductsPage from "./pages/ProductsPage";
 import StockPage from "./pages/StockPage";
 import ChallansPage from "./pages/ChallansPage";
+import ProfilePage from "./pages/ProfilePage";
 import "./App.css";
 
 const IndexRedirect = () => {
@@ -55,6 +56,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
