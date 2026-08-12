@@ -27,7 +27,7 @@ const Table = ({ columns, data, onRowClick, emptyMessage = "No data found" }) =>
               className={onRowClick ? "table-row-clickable" : ""}
             >
               {columns.map((col) => (
-                <td key={col.key} data-label={col.label}>
+                <td key={col.key}>
                   {col.render ? col.render(row) : row[col.key]}
                 </td>
               ))}
