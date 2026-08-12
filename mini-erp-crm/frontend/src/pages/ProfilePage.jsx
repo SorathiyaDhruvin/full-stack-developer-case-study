@@ -1,46 +1,55 @@
 import { useAuth } from "../context/auth";
-import Badge from "../components/common/Badge";
+import "../App.css";
 
 const ProfilePage = () => {
   const { user } = useAuth();
 
-  if (!user) return null;
-
   return (
     <div className="page-stack">
-      <section className="page-hero compact-hero">
+      <div className="page-hero">
         <div>
-          <p className="eyebrow">Your Account</p>
-          <h2>Profile</h2>
+          <p className="eyebrow">User Profile</p>
+          <h2>My Profile</h2>
         </div>
-      </section>
-      
-      <section className="panel" style={{ maxWidth: '600px', width: '100%' }}>
-        <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', borderBottom: '1px solid var(--border)' }}>
-          <div className="sidebar-avatar" style={{ width: '80px', height: '80px', fontSize: '32px' }}>
+      </div>
+
+      <div className="two-column content-grid">
+        <div className="panel profile-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 20px', textAlign: 'center' }}>
+          <div className="profile-avatar-large" style={{ width: '80px', height: '80px', borderRadius: '16px', background: 'var(--primary-soft)', color: 'var(--primary-dark)', fontSize: '32px', fontWeight: '800', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
             {user?.name?.charAt(0)?.toUpperCase() || "U"}
           </div>
-          <div style={{ textAlign: 'center' }}>
-            <h3 style={{ margin: '0 0 4px 0', fontSize: '20px' }}>{user.name}</h3>
-            <Badge variant="info">{user.role}</Badge>
+          <h3 style={{ margin: '0 0 4px 0', fontSize: '20px' }}>{user?.name || "Unknown User"}</h3>
+          <p className="muted" style={{ margin: 0, fontSize: '14px' }}>{user?.role || "No Role"}</p>
+        </div>
+
+        <div className="panel unpadded-panel">
+          <div className="padded-header" style={{ borderBottom: '1px solid var(--border)' }}>
+            <h3 style={{ margin: 0, fontSize: '16px' }}>Account Information</h3>
+          </div>
+          <div className="panel-body" style={{ padding: '20px' }}>
+            <div className="form-group" style={{ marginBottom: '16px' }}>
+              <label className="form-label">Name</label>
+              <div className="form-input" style={{ display: 'flex', alignItems: 'center', background: 'var(--surface-soft)', border: '1px solid transparent' }}>
+                {user?.name || "Unknown User"}
+              </div>
+            </div>
+            
+            <div className="form-group" style={{ marginBottom: '16px' }}>
+              <label className="form-label">Email</label>
+              <div className="form-input" style={{ display: 'flex', alignItems: 'center', background: 'var(--surface-soft)', border: '1px solid transparent' }}>
+                {user?.email || "user@example.com"}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Role</label>
+              <div className="form-input" style={{ display: 'flex', alignItems: 'center', background: 'var(--surface-soft)', border: '1px solid transparent' }}>
+                {user?.role || "No Role"}
+              </div>
+            </div>
           </div>
         </div>
-        
-        <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div>
-            <div style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '600', marginBottom: '4px' }}>Name</div>
-            <div style={{ fontSize: '15px' }}>{user.name}</div>
-          </div>
-          <div>
-            <div style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '600', marginBottom: '4px' }}>Email</div>
-            <div style={{ fontSize: '15px' }}>{user.email}</div>
-          </div>
-          <div>
-            <div style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '600', marginBottom: '4px' }}>Role</div>
-            <div style={{ fontSize: '15px' }}>{user.role}</div>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
