@@ -5,12 +5,8 @@ require('dotenv').config();
 
 async function initDB() {
     try {
-        const pool = mysql.createPool({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            multipleStatements: true
-        });
+        const getDbConfig = require("./config/getDbConfig");
+        const pool = mysql.createPool(getDbConfig());
 
         const schema = fs.readFileSync(path.join(__dirname, '../database/schema.sql'), 'utf8');
         
